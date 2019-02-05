@@ -23,18 +23,15 @@ void setup() {
   /* Calcul une nouvelle dimension pour l'image afin de l'adapter à l'écran */
   resizedWidth = img.width;
   resizedHeight = img.height;
-  while (resizedWidth > width/2 && resizedWidth > 300) {
+  while (resizedWidth > width/2.5 && resizedWidth > 200) {
     resizedWidth=resizedWidth/2;
     resizedHeight=resizedHeight/2;
   }
-  while (resizedHeight > height-42*2 && resizedWidth > 300) {
+  while (resizedHeight > height/2.5 && resizedHeight > 200) {
     resizedWidth=resizedWidth/2;
     resizedHeight=resizedHeight/2;
   }
-  if (resizedWidth < 300) {
-    resizedWidth=resizedWidth*2;
-    resizedHeight=resizedHeight*2;
-  }
+
 }
 
 void draw() {
@@ -100,6 +97,9 @@ void draw() {
   /* Affichage des histogrammes de l'image à l'écran */
   pushMatrix();
   translate(resizedWidth+69, 150+42);
+  if (resizedWidth<200) {
+    translate(200, 0); 
+  }
   stroke(225);
   fill(0);
   rect(-1, 1, 255+2, -150-2);
@@ -152,6 +152,10 @@ void draw() {
     line(l, 175*3, l, -tmp+175*3);
   }
   popMatrix();
+  pushMatrix();
+  if (resizedWidth<200) {
+    translate(200, 0); 
+  }
   fill(225);
   text("Histogrammes de l'image originale", resizedWidth+69, 36);
   fill(255, 0, 0);
@@ -162,6 +166,7 @@ void draw() {
   text("Composante bleue", resizedWidth+69+75, 36+170*3+10);
   fill(255);
   text("Luminosité", resizedWidth+69+100, 36+170*4+15);
+  popMatrix();
   ///** FIN TRAITEMENT IMAGE ORIGINALE **///
 
 
@@ -198,6 +203,9 @@ void draw() {
   /* Affichage des histogrammes de l'image à l'écran */
   pushMatrix();
   translate(resizedWidth+69+(250+42), 150+42);
+  if (resizedWidth<200) {
+    translate(200, 0); 
+  }
   stroke(225);
   fill(0);
   rect(-1, 1, 255+2, -150-2);
@@ -250,6 +258,10 @@ void draw() {
     line(r, 175*3, r, -tmp+175*3);
   }
   popMatrix();
+  pushMatrix();
+  if (resizedWidth<200) {
+    translate(200, 0); 
+  }
   fill(225);
   text("Histogrammes de la nouvelle image", resizedWidth+69+(250+42), 36);
   fill(255, 0, 0);
@@ -260,6 +272,7 @@ void draw() {
   text("Composante bleue", resizedWidth+69+(250+42)+75, 36+170*3+10);
   fill(255);
   text("Luminosité", resizedWidth+69+(250+42)+100, 36+170*4+15);
+  popMatrix();
   ///** FIN TRAITEMENT IMAGE RETOUCHEE **///
 
   fill(255);
